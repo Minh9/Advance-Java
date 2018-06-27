@@ -20,6 +20,7 @@ public class StudentTest
     String name = "Pat";
     var pat = new Student(name, new ArrayList<>(), 0.0, "Doesn't matter");
     assertThat(pat.getName(), equalTo(name));
+
   }
 
 }
