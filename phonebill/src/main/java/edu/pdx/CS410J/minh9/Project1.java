@@ -94,7 +94,7 @@ public class Project1 {
         throw new IllegalAccessException();
       }
     } catch (IllegalAccessException ex) {
-        System.out.println("Something is missing from the command line");
+        System.out.println("Missing command line arguments");
     }
     System.exit(1);
   }
