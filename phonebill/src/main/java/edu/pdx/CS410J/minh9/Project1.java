@@ -67,7 +67,7 @@ public class Project1 {
         }
         PhoneCall call=  new PhoneCall(Caller, Callee, startTime, endTime);
         PhoneBill bill = new PhoneBill(Customer, call);
-        if (args.length>7 && !args[7].equals("")) {
+        if (args.length>7 &&args.length<9 && !args[7].equals("")) {
           if(args[7].equals("-README"))
           {
             readme();
