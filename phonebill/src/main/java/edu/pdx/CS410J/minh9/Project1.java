@@ -44,7 +44,7 @@ public class Project1 {
       } else if (args.length == 1 && args[0].equals("-README")) {
         readme();
 
-      } else if (args.length <7) {
+      } else if (args.length <8) {
         throw new IllegalAccessException();
       } else if (args.length <10 ) {
         try {
@@ -68,7 +68,7 @@ public class Project1 {
         }
         PhoneCall call=  new PhoneCall(Caller, Callee, startTime, endTime);
         PhoneBill bill = new PhoneBill(Customer, call);
-        if (args.length>7 &&args.length<9 && !args[7].equals("")) {
+        if (args.length<9 && !args[7].equals("")) {
           if(args[7].equals("-README"))
           {
             readme();
