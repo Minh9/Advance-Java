@@ -45,7 +45,7 @@ public class Project1 {
 
     }
     try {
-      
+
     if (args.length <7) {
         throw new IllegalAccessException();
       } else if (args.length <10 ) {
@@ -100,7 +100,7 @@ public class Project1 {
        // System.out.println(" There are some Missing command line arguments");
       System.exit(1);
     }
-    */
+
 
   }
 
