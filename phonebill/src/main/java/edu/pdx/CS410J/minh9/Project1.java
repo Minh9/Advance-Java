@@ -36,15 +36,17 @@ public class Project1 {
 
   public static void main(String[] args) {
 
+    if (args.length == 0) {
+      System.err.println("Missing command line arguments");
+      System.exit(1);
+    }
+    if (args.length == 1 && args[0].equals("-README")) {
+      readme();
 
+    }
     try {
-
-      if (args.length == 0) {
-        throw new IllegalAccessException();
-      } else if (args.length == 1 && args[0].equals("-README")) {
-        readme();
-
-      } else if (args.length <8) {
+      
+    if (args.length <7) {
         throw new IllegalAccessException();
       } else if (args.length <10 ) {
         try {
@@ -94,9 +96,12 @@ public class Project1 {
         throw new IllegalAccessException();
       }
     } catch (IllegalAccessException ex) {
-        System.out.println("Missing command line arguments");
+
+       // System.out.println(" There are some Missing command line arguments");
+      System.exit(1);
     }
-    System.exit(1);
+    */
+
   }
 
   /**
