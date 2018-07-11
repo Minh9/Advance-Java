@@ -40,14 +40,14 @@ public class Project1 {
       System.err.println("Missing command line arguments");
       System.exit(1);
     }
-    if (args.length == 1 && args[0].equals("-README")) {
-      readme();
 
-    }
     try {
+      if (args.length == 1 && args[0].equals("-README")) {
+        readme();
 
-    if (args.length <7) {
-        throw new IllegalAccessException();
+      }
+     else if (args.length <7) {
+        throw new IllegalAccessException("Number of argument is missing");
       } else if (args.length <10 ) {
         try {
           setCustomer(args[0]);
@@ -55,14 +55,13 @@ public class Project1 {
           setCallee(args[2]);
           setStartTime(args[3], args[4]);
           setEndTime(args[5], args[6]);
-          if(startTime.contains("\"")||endTime.contains("\""))
-            throw new IllegalArgumentException("Date and time cannot contain quotes ");
+
           if (!Caller.matches("\\d{3}-\\d{3}-\\d{4}") || !Callee.matches("\\d{3}-\\d{3}-\\d{4}"))
-            throw new IllegalArgumentException("Phone numbers must contain exactly 10 digits plus two dashes");
+            throw new IllegalArgumentException("Phone number format: 10 digits plus two dashes");
           if (!args[3].matches("(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])/((19|20)\\d\\d)") || !args[5].matches("(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])/((19|20)\\d\\d)"))
-            throw new IllegalArgumentException("Date format must follow mm/dd/yyyy");
+            throw new IllegalArgumentException("Date format : mm/dd/yyyy");
           if (!args[4].matches("([01]?[0-9]|2[0-3]):[0-5][0-9]") || !args[6].matches("([01]?[0-9]|2[0-3]):[0-5][0-9]"))
-            throw new IllegalArgumentException("Time format must follow mm:hh (24 hour time)");
+            throw new IllegalArgumentException("Time format : mm:hh (24 hour time)");
 
         } catch (IllegalArgumentException ex) {
           System.out.println(ex.getMessage());
@@ -81,7 +80,7 @@ public class Project1 {
         }
          if(args.length>8 && !args[8].equals(""))
         {
-          if(args[8].equals("-README"))
+          if(args[8].equals("-README")||args[7].equals("-README"))
           {
             readme();
           } else {
@@ -97,7 +96,7 @@ public class Project1 {
       }
     } catch (IllegalAccessException ex) {
 
-       // System.out.println(" There are some Missing command line arguments");
+      System.out.println(ex.getMessage());
       System.exit(1);
     }
 
@@ -111,7 +110,6 @@ public class Project1 {
   public static void readme() {
     System.out.println("Project 1");
     System.out.println("Please provide customer name, caller number, callee number, start time, and end time");
-    System.out.println();
     System.out.println("Usage: java edu.pdx.cs410J.<login-id>.Project1 [options] <args>\n" +
             "   args are (in this order):\n" +
             "       customer               Person whose phone bill we’re modeling\n" +
@@ -184,7 +182,7 @@ public class Project1 {
 
         case "-print":
 
-          System.out.println("Customer: " + bill.getCustomer() + " " + call.toString());
+          System.out.println("Customer: " + bill.getCustomer() + "\n Detail: " + call.toString());
           break;
         default:
           throw new IllegalArgumentException();
@@ -192,7 +190,7 @@ public class Project1 {
     }
     catch (IllegalArgumentException ex)
     {
-        System.out.println("Argument not found "+ option);
+        System.out.println("Argument not found : "+option);
     }
   }
 }
