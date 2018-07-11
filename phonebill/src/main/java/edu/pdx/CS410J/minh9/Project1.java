@@ -1,10 +1,5 @@
 package edu.pdx.CS410J.minh9;
 
-import edu.pdx.cs410J.AbstractPhoneBill;
-
-import javax.xml.stream.events.EndDocument;
-import java.util.Collection;
-
 /**
  * The main class for the CS410J Phone Bill Project
  * @param Customer
