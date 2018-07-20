@@ -26,12 +26,35 @@ public class PhoneCall extends AbstractPhoneCall {
    */
   public PhoneCall(String caller, String callee, String startTime, String endTime )
   {
-    this.caller= caller;
-    this.callee= callee;
-    this.startTime= startTime;
-    this.endTime= endTime;
+    //this.caller= caller;
+    //this.callee= callee;
+    //this.startTime= startTime;
+    //this.endTime= endTime;
+    setCaller(caller);
+    setCallee(callee);
+    setStartTime(startTime);
+    setEndTime(endTime);
   }
+   public PhoneCall()
+   {
 
+   }
+  public void setCaller( String caller)
+  {
+    this.caller = caller;
+  }
+  public  void setCallee(String callee)
+  {
+    this.callee =callee;
+  }
+  public void setStartTime(String startTime)
+  {
+    this.startTime= startTime;
+  }
+  public void setEndTime(String endTime)
+  {
+    this.endTime = endTime;
+  }
   /**
    * This function return the caller's number
    * @return

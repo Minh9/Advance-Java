@@ -11,7 +11,7 @@ import java.util.Collection;
  */
 public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
 
-    private Collection<PhoneCall> calls = new ArrayList<>();
+    private ArrayList<PhoneCall> calls = new ArrayList<>();
     String customer;
 
     /**
@@ -21,8 +21,26 @@ public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
      */
     public PhoneBill(String customer,PhoneCall call)
     {
-        this.customer=customer;
+        //this.customer=customer;
+        setCustomer(customer);
         addPhoneCall(call);
+    }
+    /**
+     * add this constructor in project2
+     */
+    public PhoneBill(String customer)
+    {
+        this.customer= customer;
+    }
+
+    public void setCustomer(String customer)
+    {
+        this.customer=customer;
+    }
+
+    public PhoneBill()
+    {
+
     }
 
     /**
@@ -48,7 +66,7 @@ public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
      * @return
      */
     @Override
-    public Collection<PhoneCall> getPhoneCalls() {
+    public ArrayList<PhoneCall> getPhoneCalls() {
         return this.calls;
     }
 
