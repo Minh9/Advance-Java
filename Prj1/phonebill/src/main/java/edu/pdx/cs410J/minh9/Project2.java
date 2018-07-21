@@ -62,6 +62,7 @@ public class Project2 {
             catch (Exception ex)
             {
                 System.out.println(ex.getMessage());
+                System.exit(1);
             }
         }
         if (!isFile && is_Customer_StartDate_EndDate) {
@@ -226,8 +227,8 @@ public class Project2 {
      */
 
     private static boolean checkPrint(ArrayList<String> argumentList) {
-        if (argumentList.contains("-Print")) {
-            argumentList.remove("-Print");
+        if (argumentList.contains("-print")) {
+            argumentList.remove("-print");
             return true;
         } else {
             return false;
