@@ -25,7 +25,7 @@ public class AboutOptional {
     public void ifPresentLambda() {
         Optional<String> value = notPresent();
         value.ifPresent(x -> optionalIsPresentField = true);
-        assertEquals(optionalIsPresentField, false);
+        assertEquals(optionalIsPresentField,false);
     }
 
     //use optional on api to signal that value is optional
