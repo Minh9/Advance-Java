@@ -58,23 +58,27 @@ public class TextParser implements PhoneBillParser {
             bill = new PhoneBill(inputFile.nextLine());
             while (inputFile.hasNextLine()) {
                 callDetail = new ArrayList<>();
-                Collections.addAll(callDetail, inputFile.nextLine().split(";"));
+                Collections.addAll(callDetail, inputFile.nextLine().split("\\s*\\s* "));
 
 
-                if (callDetail.size()!=6)
+                if (callDetail.size()!=8)
                 {
                     System.out.println("Using file is not right format");
                     System.exit(1);
                 }
                 if (!callDetail.get(0).matches("\\d{3}-\\d{3}-\\d{4}") || !callDetail.get(1).matches("\\d{3}-\\d{3}-\\d{4}"))
                     throw new IllegalArgumentException("Phone number format: 10 digits plus two dashes in existed file");
-                if (!callDetail.get(2).matches("(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])/((19|20)\\d\\d)") || !callDetail.get(4).matches("(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])/((19|20)\\d\\d)"))
+                if (!callDetail.get(2).matches("(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])/((19|20)\\d\\d)") || !callDetail.get(5).matches("(0?[1-9]|1[012])/(0?[1-9]|[12][0-9]|3[01])/((19|20)\\d\\d)"))
                     throw new IllegalArgumentException("Date format : mm/dd/yyyy in existed file");
-                if (!callDetail.get(3).matches("([01]?[0-9]|2[0-3]):[0-5][0-9]") || !callDetail.get(5).matches("([01]?[0-9]|2[0-3]):[0-5][0-9]"))
-                    throw new IllegalArgumentException("Time format : mm:hh (24 hour time) in existed file");
 
-                call.setStartTime(callDetail.get(2)+";" + callDetail.get(3));
-                call.setEndTime(callDetail.get(4) + ";"+callDetail.get(5));
+                if(!callDetail.get(3).matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")||!callDetail.get(6).matches("([01]?[0-9]|2[0-3]):[0-5][0-9]"))
+                    throw new IllegalArgumentException("Time format must follow mm:hh (12 hour time)");
+                if(!callDetail.get(4).matches("(am|pm|AM|PM)")&&!callDetail.get(7).matches("(am|pm|AM|PM)"))
+                    throw new IllegalArgumentException("Time must include am/pm");
+
+                call.setStartTime(callDetail.get(2)+" " + callDetail.get(3) +" "+ callDetail.get(4));
+                call.setEndTime(callDetail.get(5) + " "+callDetail.get(6) + " " + callDetail.get(7));
+
                 call.setCaller(callDetail.get(0));
                 call.setCallee(callDetail.get(1));
                 bill.addPhoneCall(call);

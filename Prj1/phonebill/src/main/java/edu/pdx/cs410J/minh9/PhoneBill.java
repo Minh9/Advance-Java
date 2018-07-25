@@ -1,8 +1,11 @@
 package edu.pdx.cs410J.minh9;
 
 import edu.pdx.cs410J.AbstractPhoneBill;
+import edu.pdx.cs410J.AbstractPhoneCall;
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * This is the phone bill class.
@@ -67,8 +70,12 @@ public class PhoneBill extends AbstractPhoneBill<PhoneCall> {
      */
     @Override
     public ArrayList<PhoneCall> getPhoneCalls() {
+    Collections.sort(calls);
+
         return this.calls;
     }
+
+
 
 
 }

@@ -2,6 +2,15 @@ package edu.pdx.cs410J.minh9;
 
 import edu.pdx.cs410J.AbstractPhoneCall;
 
+import java.text.DateFormat;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.text.ParseException;
+
+
 /**
  * This is the phone call class
  * @ param
@@ -10,13 +19,13 @@ import edu.pdx.cs410J.AbstractPhoneCall;
  * startTime: start time of the call : mm/dd/yy hh:mm
  * endTime : end time of the call : mm/dd/yy hh:mm
  */
-public class PhoneCall extends AbstractPhoneCall {
+public class PhoneCall extends AbstractPhoneCall implements Comparable<PhoneCall>{
 
   String caller;
   String callee;
-  String startTime;
-  String endTime;
-
+  Date startTime;
+  Date endTime;
+  DateFormat ShortDateFormat = new SimpleDateFormat("MM/dd/yyy hh:mm a", Locale.ENGLISH);
   /**
    * Class's constructor
    * @param caller
@@ -26,10 +35,7 @@ public class PhoneCall extends AbstractPhoneCall {
    */
   public PhoneCall(String caller, String callee, String startTime, String endTime )
   {
-    //this.caller= caller;
-    //this.callee= callee;
-    //this.startTime= startTime;
-    //this.endTime= endTime;
+
     setCaller(caller);
     setCallee(callee);
     setStartTime(startTime);
@@ -49,12 +55,25 @@ public class PhoneCall extends AbstractPhoneCall {
   }
   public void setStartTime(String startTime)
   {
-    this.startTime= startTime;
+    try {
+      this.startTime = ShortDateFormat.parse(startTime);
+    }
+    catch (Exception ex)
+    {
+      System.out.println(ex.getMessage());
+      System.exit(1);
+    }
   }
   public void setEndTime(String endTime)
   {
-    this.endTime = endTime;
-  }
+    try {
+      this.endTime= ShortDateFormat.parse(endTime);
+    }
+    catch (Exception ex)
+    {
+      System.out.println(ex.getMessage());
+      System.exit(1);
+    }  }
   /**
    * This function return the caller's number
    * @return
@@ -79,7 +98,10 @@ public class PhoneCall extends AbstractPhoneCall {
    */
   @Override
   public String getStartTimeString() {
-    return this.startTime;
+    if(startTime != null)
+      return (ShortDateFormat.format(startTime));
+    else
+      return "";
   }
 
   /**
@@ -88,6 +110,47 @@ public class PhoneCall extends AbstractPhoneCall {
    */
   @Override
   public String getEndTimeString() {
-    return this.endTime;
+    if(endTime != null)
+      return (ShortDateFormat.format(endTime));
+    else
+      return "";
   }
+
+  /**
+   * This function to compare the start time this phone call and another phone call
+   * @param call
+   * @return
+   */
+  @Override
+  public int compareTo(PhoneCall call) {
+
+    Date _startTime = call.getStartTime();
+    String caller = call.getCaller();
+
+
+    if (this.startTime.equals(_startTime)) {
+      return (this.caller.compareTo(caller));
+    }
+
+    return this.startTime.compareTo(_startTime);
+
+
+  }
+
+  /**
+   * This function return the end time of the phone call
+   * @return
+   */
+  public Date getEndTime() {
+    return endTime;
+  }
+
+  /**
+   * This function return the start time of the phone call
+   * @return
+   */
+  public Date getStartTime() {
+    return startTime;
+  }
+
 }
